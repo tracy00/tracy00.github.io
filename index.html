@@ -32,6 +32,74 @@
 
 <p>Guys, I'm Shubham and as of now I'm doing electronics from BITS Pilani. I'm interested in programming, signal processing, books and movies and i also do Robotics and philosophical stuffs in free time. Oh yes I blog too, sometimes. :P
 I will be mostly writing about my projects and labs here and sometimes maybe reviews of other interesting stuffs.</p>
+
+<h2>
+<a id="mup-lab-7-tuesday-2-4" class="anchor" href="#mup-lab-7-tuesday-2-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mup Lab 7 tuesday 2-4</h2>
+
+<h3>
+<a id="qwrite-an-alp-that-takes-in-user-key-press-one-by-one-until-enter-key-odh-is-pressed-the-characters" class="anchor" href="#qwrite-an-alp-that-takes-in-user-key-press-one-by-one-until-enter-key-odh-is-pressed-the-characters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Q:Write an ALP that takes in user key press one by one until enter key (ODH) is pressed. The characters</h3>
+
+<h3>
+<a id="entered-by-the-user-must-be-stored-in-a-file-zyxtxt-the-file-is-not-already-present-it-has-to-be-created" class="anchor" href="#entered-by-the-user-must-be-stored-in-a-file-zyxtxt-the-file-is-not-already-present-it-has-to-be-created" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>entered by the user must be stored in a file zyx.txt. The file is not already present; it has to be created.</h3>
+
+<h3>
+<a id="you-can-assume-that-user-will-not-enter-more-than-100-characters-this-is-only-for-reserving-storage" class="anchor" href="#you-can-assume-that-user-will-not-enter-more-than-100-characters-this-is-only-for-reserving-storage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>You can assume that user will not enter more than 100 characters (this is only for reserving storage</h3>
+
+<h3>
+<a id="space" class="anchor" href="#space" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>space)</h3>
+
+<p>Solution:</p>
+
+<blockquote>
+<p>.model tiny
+.486
+.data
+max1   db 100
+act1   db ?
+inp1   db 100 dup('$')
+fname  db 'hex.txt',0
+handle dw ?
+.code
+.startup
+;enter text
+lea dx,max1
+mov ah,0ah
+int 21h</p>
+</blockquote>
+
+<p>;create file</p>
+
+<blockquote>
+<p>mov ah,3ch
+lea dx,fname
+mov cl,2
+int 21h
+mov handle,ax</p>
+
+<p>lea si,act1
+mov al,[si]
+and al,0fh</p>
+</blockquote>
+
+<p>;write to the file</p>
+
+<blockquote>
+<p>mov ah,40h
+mov bx,handle
+movzx cx,al
+lea dx,inp1
+int 21h</p>
+</blockquote>
+
+<p>;close the file</p>
+
+<blockquote>
+<p>mov ah,3eh
+mov bx, handle
+int 21h
+.exit
+end</p>
+</blockquote>
       </section>
     </div>
 
